@@ -68,7 +68,7 @@ class Key {
 
   /**
    * Get key in raw format usable with XXTEA.
-   * return integer[] raw key
+   * @return integer[] raw key
    **/
   public function raw() {
     if ($this->key)

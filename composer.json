@@ -3,7 +3,10 @@
   "description": "Email obfuscator.",
   "license": "WTFPL-2",
   "autoload": {
-    "psr-0": { "klg\\obfuscator": "src/" }
+    "psr-0": {
+      "klg\\obfuscator": "src/",
+      "klg\\Obfuscator": "src/"
+    }
   },
   "require": {
     "klg/random": "dev-master"
