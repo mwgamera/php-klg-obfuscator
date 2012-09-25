@@ -11,12 +11,12 @@ namespace klg\obfuscator;
 class Cipher {
   /**
    * Encrypt block of data with given key.
-   * @param   string    block of data
-   * @param   integer[] 128-bit key
-   * @param   integer   initialization vector
-   * @return  string    encrypted data
+   * @param   string  block of data
+   * @param   Key     128-bit key
+   * @param   integer initialization vector
+   * @return  string  encrypted data
    **/
-  public static function encrypt($str, $key, $iv = null) {
+  public static function encrypt($str, Key $key, $iv = null) {
     static $rand = null;
     if (!$rand)
       $rand = new \klg\random\SecureRandom;
@@ -30,7 +30,7 @@ class Cipher {
     $rand->php_reseed();
     for ($i = 0; mt_rand(0,1) && $i < 5; $i++)
       array_push($words, 0);
-    $words = XXTEA::encrypt($words, $key);
+    $words = XXTEA::encrypt($words, $key->raw());
     // encode with base64url
     array_unshift($words, 'N*');
     $str = call_user_func_array('pack', $words);
@@ -43,17 +43,17 @@ class Cipher {
 
   /**
    * Decrypt block of data with given key.
-   * @param   string    block of data
-   * @param   integer[] 128-bit key
-   * @return  string    decrypted data
+   * @param   string  block of data
+   * @param   Key     128-bit key
+   * @return  string  decrypted data
    **/
-  public static function decrypt($str, $key) {
+  public static function decrypt($str, Key $key) {
     // decode base64url
     $str = str_replace(array('-','_'), array('+','/'), $str);
     $str = base64_decode($str);
     $words = array_values(unpack('N*', $str));
     // decrypt
-    $words = XXTEA::decrypt($words, $key);
+    $words = XXTEA::decrypt($words, $key->raw());
     array_shift($words); // drop IV
     // convert to string
     array_unshift($words, 'N*');
