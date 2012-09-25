@@ -30,7 +30,7 @@ class CipherTest extends \PHPUnit_Framework_TestCase {
     $x4 = Cipher::encrypt($msg, $key, $iv);
     // almost certainly shall be distinct
     $x = array($x1=>1, $x2=>1, $x3=>1, $x4=>1);
-    $this->assertTrue(count($x) === 4);
+    $this->assertCount(4, $x);
   }
 
   /**
