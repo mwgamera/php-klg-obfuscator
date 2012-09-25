@@ -65,6 +65,7 @@ class Key {
 
   /**
    * Get key in raw format usable with XXTEA.
+   * return integer[] raw key
    **/
   public function raw() {
     if ($this->key)
@@ -99,6 +100,9 @@ class Key {
   /**
    * Portable implementation of RFC 2104 HMAC-SHA1.
    * Used by kdf if Hash extension is disabled.
+   * @param   string  key
+   * @param   string  message
+   * @return  string  message authentication code
    **/
   private static function hmac_sha1($key, $msg) {
     $ipad = str_repeat(chr(0x36), 64);
