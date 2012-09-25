@@ -12,6 +12,9 @@ class Key {
   /** Number of rounds in key derivation function. */
   const KEY_ROUNDS = 20;
 
+  /** Length of seed string. */
+  const SEED_LENGTH = 22; // >128-bit
+
   /**
    * Server secret used to derive the key.
    * This should be constant across requests but never disclosed.
@@ -51,7 +54,7 @@ class Key {
     if ($this->seed)
       return $this->seed;
     $rand = new \klg\random\SecureRandom;
-    return $this->seed = $rand->token_base64url(22);
+    return $this->seed = $rand->token_base64url(self::SEED_LENGTH);
   }
 
   /**
