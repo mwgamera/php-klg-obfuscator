@@ -1,0 +1,20 @@
+{
+  "name": "klg/obfuscator",
+  "description": "Email obfuscator.",
+  "license": "WTFPL-2",
+  "autoload": {
+    "psr-0": { "klg\\obfuscator": "src/" }
+  },
+  "require": {
+    "klg/random": "dev-master"
+  },
+  "suggest": {
+    "twig/twig": "Templating engine that can be extended with obfuscator."
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git://github.com/mwgamera/php-klg-random.git"
+    }
+  ]
+}
