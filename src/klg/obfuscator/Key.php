@@ -12,8 +12,11 @@ class Key {
   /** Number of rounds in key derivation function. */
   const KEY_ROUNDS = 20;
 
-  /** Length of seed string. */
+  /** Length of seed string generated. */
   const SEED_LENGTH = 22; // >128-bit
+
+  /** Maximal length of seed. */
+  const MAX_SEED_LENGTH = 1024;
 
   /**
    * Server secret used to derive the key.
@@ -82,7 +85,7 @@ class Key {
    **/
   private function kdf() {
     $r = self::KEY_ROUNDS;
-    $s = $this->getSeed();
+    $s = substr($this->getSeed(), 0, self::MAX_SEED_LENGTH);
     $k = $this->secret;
     $v = sha1($s, true);
     if (function_exists('hash_hmac')) {
