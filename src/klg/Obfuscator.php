@@ -65,5 +65,16 @@ class Obfuscator {
   public function jsCode() {
     return file_get_contents($this->jsPath());
   }
+
+  /**
+   * Get a Twig extension object.
+   * @return \Twig_Extension
+   **/
+  public function twigExtension() {
+    static $ext;
+    if (!$ext)
+      $ext = new \klg\obfuscator\TwigExtension($this);
+    return $ext;
+  }
 }
 ?>
