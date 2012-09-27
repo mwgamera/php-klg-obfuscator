@@ -71,12 +71,24 @@ class Key {
 
   /**
    * Get key in raw format usable with XXTEA.
+   * Key is an array of 32-bit integers of length 4
+   * (128 bits of key material altogether).
    * @return integer[] raw key
    **/
   public function raw() {
     if ($this->key)
       return $this->key;
     return $this->key = $this->kdf();
+  }
+
+  /**
+   * Get key in JSON format usable with Javascript code.
+   * @return string key
+   **/
+  public function json() {
+    $k = $this->raw();
+    return sprintf('[%u,%u,%u,%u]',
+      $k[0], $k[1], $k[2], $k[3]);
   }
 
   /**
