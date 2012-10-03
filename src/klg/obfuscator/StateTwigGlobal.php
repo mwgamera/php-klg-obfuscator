@@ -37,5 +37,18 @@ class StateTwigGlobal {
   public function key() {
     return $this->o->key->raw();
   }
+
+  /**
+   * Simplify tracking inclusion of deobfuscating script.
+   * Returns fales until called with argument true.
+   * @param boolean true when including script
+   * @return boolean if script was included
+   **/
+  public function loaded($p = false) {
+    static $loaded = false;
+    if ($p)
+      $loaded = true;
+    return $loaded;
+  }
 }
 ?>
