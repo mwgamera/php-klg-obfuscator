@@ -134,4 +134,3 @@ class Key {
     return sha1($opad . sha1($ipad . $msg, true), true);
   }
 }
-?>

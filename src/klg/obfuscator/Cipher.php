@@ -61,4 +61,3 @@ class Cipher {
     return rtrim($str, "\0");
   }
 }
-?>

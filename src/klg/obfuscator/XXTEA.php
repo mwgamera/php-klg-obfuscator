@@ -59,4 +59,3 @@ class XXTEA {
     return $data;
   }
 }
-?>

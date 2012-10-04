@@ -77,4 +77,3 @@ class Obfuscator {
     return $ext;
   }
 }
-?>

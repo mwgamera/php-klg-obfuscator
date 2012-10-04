@@ -51,4 +51,3 @@ class StateTwigGlobal {
     return $loaded;
   }
 }
-?>

@@ -30,4 +30,3 @@ else:
     </form>
 EOF;
 endif
-?>

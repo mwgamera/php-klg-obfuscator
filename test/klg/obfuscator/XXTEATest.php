@@ -63,5 +63,3 @@ class XXTEATest extends \PHPUnit_Framework_TestCase {
     return $data;
   }
 }
-
-?>
