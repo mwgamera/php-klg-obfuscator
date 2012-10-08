@@ -10,7 +10,7 @@ $o = new \klg\Obfuscator($secret);
   <head>
     <meta charset="UTF-8">
     <title>Obfuscator example</title>
-    <script type="application/ecmascript" defer="defer"
+    <script type="text/ecmascript" defer="defer"
       src="script.php?seed=<?php echo $o->key->getSeed(); ?>"></script>
   </head>
   <body>

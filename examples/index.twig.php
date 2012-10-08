@@ -38,7 +38,7 @@ fallback.php?seed={{- obfuscator.seed -}}&amp;href={{- ("mailto:" ~ address)|obf
 {% macro mailto(address, name) %}
 <a href="{{ _self.fallback(address) }}" onmouseover="klg.obfuscator.href(this)">{{ name }}</a>
 {%- if obfuscator.loaded == false %}
-<script type="application/ecmascript" defer="defer"{#
+<script type="text/ecmascript" defer="defer"{#
   #} src="script.php?seed={{ obfuscator.seed }}"></script>
 {%- do obfuscator.loaded(true) %}
 {% endif %}
