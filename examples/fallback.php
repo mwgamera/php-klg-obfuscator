@@ -29,4 +29,4 @@ else:
     <input type="submit" value="Show email">
     </form>
 EOF;
-endif
+endif;
