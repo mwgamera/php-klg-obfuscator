@@ -4,10 +4,10 @@ fallback.php?seed={{- obfuscator.seed -}}&amp;href={{- ("mailto:" ~ address)|obf
 {%- endmacro -%}
 
 {% macro mailto(address, name) %}
-<a href="{{ _self.fallback(address) }}" onmouseover="klg.obfuscator.href(this)">{{ name }}</a>
+{% import _self as example %}
+<a href="{{ example.fallback(address) }}" onmouseover="klg.obfuscator.href(this)">{{ name }}</a>
 {%- if obfuscator.loaded == false %}
-<script type="text/ecmascript" defer="defer"{#
-  #} src="script.php?seed={{ obfuscator.seed }}"></script>
+<script src="script.php?seed={{ obfuscator.seed }}" defer></script>
 {%- do obfuscator.loaded(true) %}
 {% endif %}
 {% endmacro -%}
@@ -24,8 +24,9 @@ fallback.php?seed={{- obfuscator.seed -}}&amp;href={{- ("mailto:" ~ address)|obf
     Hover the mouse pointer over one of those:
     </p>
     <ul>
+      {% import _self as example -%}
       {% for user in people %}
-      <li>{{ _self.mailto(user.mail, user.name) }}</li>
+      <li>{{ example.mailto(user.mail, user.name) }}</li>
       {% endfor %}
     </ul>
   </body>

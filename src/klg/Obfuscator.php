@@ -89,10 +89,6 @@ class Obfuscator
      **/
     public function twigExtension()
     {
-        static $ext;
-        if (!$ext) {
-            $ext = new \klg\obfuscator\TwigExtension($this);
-        }
-        return $ext;
+        return new \klg\obfuscator\TwigExtension($this);
     }
 }
