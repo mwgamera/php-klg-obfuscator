@@ -18,8 +18,7 @@ if (strtolower($auth) == strtolower(@$_POST['auth'])):
 
 else:
 
-    $rand = new \klg\random\SecureRandom();
-    $nonce = $rand->token_base64(40);
+    $nonce = base64_encode(random_bytes(30));
     $auth = hash_hmac('sha1', $seed.$nonce.$href, $secret);
     echo <<<EOF
     <form action="" method="POST" enctype="multipart/form-data">

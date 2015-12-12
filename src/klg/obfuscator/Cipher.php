@@ -22,29 +22,20 @@ class Cipher
      **/
     public static function encrypt($str, Key $key, $iv = null)
     {
-        static $rand = null;
-        if (!$rand) {
-            $rand = new \klg\random\SecureRandom();
-        }
         // convert to array
         $str = rtrim($str, "\0"); // normalize
         $words = array_values(unpack('N*', $str."\0\0\0"));
         // prepend initialization vector
-        $iv = $iv ?: $rand->get_integer();
-        array_unshift($words, $iv ?: $rand->get_integer());
+        array_unshift($words, $iv ?: random_int(0, 0xffffffff));
         // append random length padding
-        $rand->php_reseed();
-        for ($i = 0; mt_rand(0, 1) && $i < 5; $i++) {
+        for ($i = 0; random_int(0, 1) && $i < 5; $i++) {
             array_push($words, 0);
         }
         $words = XXTEA::encrypt($words, $key->raw());
         // encode with base64url
         array_unshift($words, 'N*');
         $str = call_user_func_array('pack', $words);
-        $str = base64_encode($str);
-        $str = str_replace(
-            array('+', '/', '='),
-            array('-', '_', ''), $str);
+        $str = rtrim(strtr(base64_encode($str), '+/', '-_'), '=');
         return $str;
     }
 
@@ -59,8 +50,7 @@ class Cipher
     public static function decrypt($str, Key $key)
     {
         // decode base64url
-        $str = str_replace(array('-', '_'), array('+', '/'), $str);
-        $str = base64_decode($str);
+        $str = base64_decode(strtr($str, '-_', '+/'));
         $words = array_values(unpack('N*', $str));
         // decrypt
         $words = XXTEA::decrypt($words, $key->raw());

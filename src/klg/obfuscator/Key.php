@@ -64,8 +64,8 @@ class Key
         if ($this->seed) {
             return $this->seed;
         }
-        $rand = new \klg\random\SecureRandom();
-        return $this->seed = $rand->token_base64url(self::SEED_LENGTH);
+        $buf = base64_encode(random_bytes((self::SEED_LENGTH + 1) * 3 / 4));
+        return $this->seed = strtr(substr($buf, 0, self::SEED_LENGTH), '+/', '-_');
     }
 
     /**

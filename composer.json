@@ -9,15 +9,9 @@
     }
   },
   "require": {
-    "klg/random": "dev-master"
+    "paragonie/random_compat": "^1.1"
   },
   "suggest": {
     "twig/twig": "Templating engine that can be extended with obfuscator."
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "git://github.com/mwgamera/php-klg-random.git"
-    }
-  ]
+  }
 }
