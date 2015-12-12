@@ -1,7 +1,7 @@
 {
   "name": "klg/obfuscator",
-  "description": "Email obfuscator.",
-  "license": "WTFPL-2",
+  "description": "Email obfuscator",
+  "license": "WTFPL",
   "autoload": {
     "psr-0": {
       "klg\\obfuscator": "src/",
@@ -12,6 +12,6 @@
     "paragonie/random_compat": "^1.1"
   },
   "suggest": {
-    "twig/twig": "Templating engine that can be extended with obfuscator."
+    "twig/twig": "Templating engine that can be extended with obfuscator"
   }
 }
